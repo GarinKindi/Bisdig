@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Studi Bisnis Digital | FEB Universitas Janabadra</title>
+    <meta name="description" content="Program Studi Bisnis Digital Fakultas Ekonomi dan Bisnis Universitas Janabadra mempersiapkan mahasiswa menghadapi era ekonomi digital melalui pembelajaran bisnis, kewirausahaan, dan teknologi.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            primary: '#2563eb',
+                            light: '#f8fafc',
+                            accent: '#38bdf8',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #334155;
+            overflow-x: hidden;
+        }
+        .transition-all-smooth {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hero-gradient {
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.5) 50%, rgba(15, 23, 42, 0.2) 100%);
+        }
+        .img-overlay {
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0) 100%);
+        }
+        .page-hero-gradient {
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.4) 100%);
+        }
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float-slow {
+            animation: float-slow 6s ease-in-out infinite;
+        }
+        @keyframes spin-very-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-very-slow {
+            animation: spin-very-slow 45s linear infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.05); }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 5s ease-in-out infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .animate-float-slow,
+            .animate-spin-very-slow,
+            .animate-pulse-glow {
+                animation: none;
+            }
+        }
+        .portrait-3d-scene {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        .timeline-line {
+            background: linear-gradient(to bottom, #2563eb 0%, #38bdf8 100%);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const MOCK_PROFILE_DATA = {
+            about: {
+                title: "Tentang Program Studi",
+                description: "Program Studi Bisnis Digital FEB Universitas Janabadra mengintegrasikan ilmu bisnis, manajemen, kewirausahaan, dan teknologi digital.",
+                heroImage: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
+                introTitle: "Bisnis Digital adalah jawaban untuk masa depan ekonomi dan teknologi.",
+                introDescription: [
+                    "Program Studi Bisnis Digital Fakultas Ekonomi dan Bisnis Universitas Janabadra merupakan program yang memadukan ilmu bisnis, manajemen, kewirausahaan, dan pemanfaatan teknologi digital.",
+                    "Kami mempersiapkan mahasiswa untuk menjadi pemimpin masa depan yang mampu beradaptasi, berinovasi, dan menciptakan peluang di era ekonomi digital."
+                ],
+                coreValues: [
+                    { icon: "lightbulb", title: "Adaptif & Inovatif", description: "Mendorong mahasiswa untuk tanggap terhadap perubahan dan menciptakan solusi baru berbasis teknologi." },
+                    { icon: "target", title: "Entrepreneurial Mindset", description: "Menanamkan pola pikir wirausaha digital sejak awal perkuliahan." },
+                    { icon: "users", title: "Kolaborasi Industri", description: "Pembelajaran terintegrasi dengan dunia bisnis dan startup." },
+                    { icon: "compass", title: "Berorientasi Masa Depan", description: "Memahami tren teknologi dan e-commerce." }
+                ],
+                learningMethods: [
+                    "Project-Based Learning – Mengerjakan proyek nyata seperti strategi pemasaran digital.",
+                    "Kuliah Praktisi – Dosen tamu dari startup dan perusahaan teknologi.",
+                    "Studi Kasus Industri – Analisis langsung dari permasalahan bisnis nyata.",
+                    "Magang & Sertifikasi – Kesempatan magang dan sertifikasi kompetensi digital."
+                ]
+            },
+            visionMission: {
+                vision: "Menjadi Program Studi Bisnis Digital yang unggul dalam menghasilkan lulusan yang adaptif, inovatif, dan berdaya saing di era ekonomi digital pada tingkat nasional tahun 2030.",
+                missions: [
+                    "Menyelenggarakan pendidikan bisnis digital yang integratif antara teori dan praktik.",
+                    "Mengembangkan penelitian dan inovasi di bidang bisnis dan teknologi.",
+                    "Membangun kemitraan strategis dengan dunia usaha dan industri.",
+                    "Membentuk karakter entrepreneurial dan kepemimpinan mahasiswa."
+                ],
+                goals: [
+                    "Menghasilkan lulusan yang kompeten di bidang digital marketing, e-commerce, dan business analytics.",
+                    "Menjadi pusat riset dan inovasi bisnis digital di tingkat regional.",
+                    "Memperluas jaringan kerjasama dengan industri nasional dan internasional."
+                ]
+            },
+            history: [
+                { year: "2024", title: "Pembentukan Program Studi", description: "Program Studi Bisnis Digital resmi didirikan di bawah Fakultas Ekonomi dan Bisnis Universitas Janabadra berlandaskan pada kebutuhan industri 4.0." },
+                { year: "2025", title: "Penerimaan Mahasiswa Pertama", description: "Angkatan pertama mahasiswa Bisnis Digital memulai perkuliahan dengan antusiasme tinggi dari berbagai daerah." },
+                { year: "2026", title: "Pengembangan Kurikulum", description: "Kurikulum diperbarui dengan fokus pada project-based learning dan kolaborasi dengan startup lokal Yogyakarta." }
+            ],
+            headOfProgram: {
+                name: "Dr. Nama Kaprodi",
+                degree: "S.E., M.Sc.",
+                position: "Ketua Program Studi",
+                photo: "https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                greeting: "Kami percaya bahwa masa depan dunia bisnis berada pada persimpangan antara inovasi, teknologi, dan kreativitas tanpa batas. Program Studi Bisnis Digital hadir untuk mempersiapkan generasi yang tidak hanya mahir menggunakan teknologi, tetapi mampu beradaptasi, memimpin kolaborasi, dan menciptakan solusi nyata di era ekonomi digital.",
+                signature: "Salam hangat,"
+            },
+            organization: {
+                head: {
+                    id: "1",
+                    name: "Dr. Nama Kaprodi, S.E., M.Sc.",
+                    position: "Ketua Program Studi",
+                    photo: "https://api.dicebear.com/7.x/notionists/svg?seed=Kaprodi&backgroundColor=2563eb",
+                    children: [
+                        {
+                            id: "2",
+                            name: "Nama Sekretaris, S.E., M.M.",
+                            position: "Sekretaris Program Studi",
+                            photo: "https://api.dicebear.com/7.x/notionists/svg?seed=Sekretaris&backgroundColor=38bdf8",
+                            children: [
+                                { id: "3", name: "Koordinator Akademik", position: "Koordinator", photo: "", children: [] },
+                                { id: "4", name: "Koordinator Kemahasiswaan", position: "Koordinator", photo: "", children: [] }
+                            ]
+                        }
+                    ]
+                }
+            },
+            lecturers: [
+                {
+                    id: "1",
+                    slug: "dosen-1",
+                    name: "Dr. Budi Santoso",
+                    degree: "S.E., M.Si.",
+                    photo: "https://api.dicebear.com/7.x/notionists/svg?seed=Budi&backgroundColor=f8fafc",
+                    academicPosition: "Lektor Kepala",
+                    almamater: "Universitas Gadjah Mada",
+                    expertise: ["Digital Marketing", "E-Commerce", "Consumer Behavior"],
+                    researchLinks: [
+                        { name: "Google Scholar", url: "#" },
+                        { name: "SINTA", url: "#" },
+                        { name: "Scopus", url: "#" }
+                    ],
+                    education: [
+                        { degree: "S3", major: "Ilmu Ekonomi", univ: "Universitas Gadjah Mada", year: "2020" },
+                        { degree: "S2", major: "Manajemen", univ: "Universitas Indonesia", year: "2015" },
+                        { degree: "S1", major: "Ekonomi", univ: "Universitas Diponegoro", year: "2012" }
+                    ],
+                    publications: [
+                        { title: "The Impact of Digital Marketing on MSMEs during Post-Pandemic Recovery", year: "2025", journal: "Journal of Digital Business", link: "#" },
+                        { title: "E-Commerce Strategies in Developing Countries", year: "2024", journal: "International E-Commerce Review", link: "#" }
+                    ]
+                },
+                {
+                    id: "2",
+                    slug: "dosen-2",
+                    name: "Siti Aminah",
+                    degree: "S.Kom., M.M.",
+                    photo: "https://api.dicebear.com/7.x/notionists/svg?seed=Siti&backgroundColor=f8fafc",
+                    academicPosition: "Asisten Ahli",
+                    almamater: "Universitas Indonesia",
+                    expertise: ["Business Analytics", "Data Science", "IT Strategy"],
+                    researchLinks: [
+                        { name: "Google Scholar", url: "#" },
+                        { name: "SINTA", url: "#" }
+                    ],
+                    education: [
+                        { degree: "S2", major: "Magister Manajemen", univ: "Universitas Indonesia", year: "2019" },
+                        { degree: "S1", major: "Ilmu Komputer", univ: "Universitas Brawijaya", year: "2017" }
+                    ],
+                    publications: [
+                        { title: "Predictive Analytics for Retail Business using Machine Learning", year: "2025", journal: "Tech Business Journal", link: "#" },
+                        { title: "Data-Driven Decision Making in Startups", year: "2023", journal: "Journal of Innovation and Tech", link: "#" }
+                    ]
+                },
+                {
+                    id: "3",
+                    slug: "dosen-3",
+                    name: "Arif Rachman",
+                    degree: "S.E., M.B.A.",
+                    photo: "https://api.dicebear.com/7.x/notionists/svg?seed=Arif&backgroundColor=f8fafc",
+                    academicPosition: "Lektor",
+                    almamater: "Institut Teknologi Bandung",
+                    expertise: ["Entrepreneurship", "Business Strategy", "Venture Capital"],
+                    researchLinks: [
+                        { name: "Google Scholar", url: "#" },
+                        { name: "SINTA", url: "#" }
+                    ],
+                    education: [
+                        { degree: "S2", major: "Master of Business Administration", univ: "Institut Teknologi Bandung", year: "2018" },
+                        { degree: "S1", major: "Manajemen Bisnis", univ: "Universitas Sebelas Maret", year: "2015" }
+                    ],
+                    publications: [
+                        { title: "Startup Ecosystem Dynamics in Indonesia", year: "2026", journal: "Asian Entrepreneurship Review", link: "#" },
+                        { title: "Venture Capital Investment Trends in Tech Sector", year: "2024", journal: "Finance & Tech Journal", link: "#" }
+                    ]
+                }
+            ],
+            accreditation: {
+                status: "Baik",
+                institution: "Badan Akreditasi Nasional Perguruan Tinggi (BAN-PT)",
+                decreeNumber: "SK BAN-PT No. 1234/SK/BAN-PT/Akred/S/X/2025",
+                validFrom: "2025",
+                validUntil: "2030",
+                certificateUrl: "#"
+            }
+        };
+
+        const Icon = ({ name, className = "w-6 h-6", strokeWidth = 2 }) => {
+            const icons = {
+                menu: <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />,
+                close: <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />,
+                chevronRight: <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />,
+                chevronDown: <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />,
+                arrowRight: <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />,
+                bookOpen: <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />,
+                users: <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />,
+                compass: <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.89 1.147l-2.825.908a.375.375 0 01-.467-.467l.908-2.825a4.5 4.5 0 011.146-1.89l13.158-13.158zM16.862 4.487L19.5 7.125" />,
+                target: <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 3.75H6A2.25 2.25 0 003.75 6v1.5m13.5 0V6A2.25 2.25 0 0015 3.75h-1.5m-6 15H6A2.25 2.25 0 013.75 16.5v-1.5m13.5 0v1.5A2.25 2.25 0 0115 18.75h-1.5M12 15a3 3 0 100-6 3 3 0 000 6z" />,
+                lightbulb: <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.82 1.508-2.316a7.5 7.5 0 10-7.516 0c.85.496 1.508 1.333 1.508 2.316V18" />,
+                check: <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />,
+                calendar: <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />,
+                academicCap: <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />,
+                document: <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />,
+                externalLink: <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />,
+                link: <path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />,
+                trendingUp: <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />,
+                smartphone: <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />,
+                pieChart: <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6zM12 3v3h3C15 4.343 13.657 3 12 3z" />,
+                briefcase: <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.896 1.982-2 1.982H5.75c-1.103 0-2-.888-2-1.982v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />,
+                rocket: <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.36c-2.03 0-3.95-.78-5.38-2.21a1 1 0 010-1.42l3-3a1 1 0 011.41 0 2 2 0 002.83 0 1 1 0 011.41 0l2.57 2.57zM14.37 15.59a6 6 0 007.36-5.84c0-2.03-.78-3.95-2.21-5.38a1 1 0 00-1.42 0l-3 3a1 1 0 000 1.41 2 2 0 010 2.83 1 1 0 000 1.41l2.57 2.57zM10.12 10.12l-2.12-2.12M13.88 13.88l2.12 2.12" />
+            };
+            return (
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={strokeWidth} className={className}>
+                    {icons[name] || <circle cx="12" cy="12" r="10" />}
+                </svg>
+            );
+        };
+
+        const Navbar = ({ currentPage, currentSubPage, navigate }) => {
+            const [isScrolled, setIsScrolled] = React.useState(false);
+            const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+            const [openDropdown, setOpenDropdown] = React.useState(null);
+
+            React.useEffect(() => {
+                const handleScroll = () => setIsScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const menuStructure = [
+                { name: 'Beranda', page: 'beranda' },
+                {
+                    name: 'Profil', page: 'profil',
+                    items: [
+                        { name: 'Tentang Prodi', sub: 'tentang' },
+                        { name: 'Visi & Misi', sub: 'visi-misi' },
+                        { name: 'Sejarah Prodi', sub: 'sejarah' },
+                        { name: 'Sambutan Kaprodi', sub: 'sambutan-kaprodi' },
+                        { name: 'Struktur Organisasi', sub: 'struktur-organisasi' },
+                        { name: 'Profil Dosen', sub: 'dosen' },
+                        { name: 'Akreditasi', sub: 'akreditasi' }
+                    ]
+                },
+                {
+                    name: 'Akademik', page: 'akademik',
+                    items: [
+                        { name: 'Kurikulum', sub: 'kurikulum' },
+                        { name: 'Profil Lulusan', sub: 'profil-lulusan' },
+                        { name: 'Kalender Akademik', sub: 'kalender' }
+                    ]
+                },
+                {
+                    name: 'Kemahasiswaan', page: 'kemahasiswaan',
+                    items: [
+                        { name: 'Kegiatan Mahasiswa', sub: 'kegiatan' },
+                        { name: 'Prestasi Mahasiswa', sub: 'prestasi' },
+                        { name: 'Galeri Kegiatan', sub: 'galeri' }
+                    ]
+                },
+                {
+                    name: 'Informasi', page: 'informasi',
+                    items: [
+                        { name: 'Berita & Artikel', sub: 'berita' },
+                        { name: 'Agenda & Pengumuman', sub: 'agenda' }
+                    ]
+                }
+            ];
+
+            const isActive = (page) => currentPage === page;
+
+            return (
+                <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-white py-4'}`}>
+                    <div className="max-w-7xl mx-auto px-4 lg:px-8 flex justify-between items-center">
+                        <button onClick={() => navigate('beranda')} className="flex items-center gap-3 cursor-pointer">
+                            <div className="w-10 h-10 bg-brand-primary rounded-lg flex items-center justify-center text-white font-black tracking-tighter text-xl leading-none">UJB</div>
+                            <div className="flex flex-col text-left">
+                                <span className="font-extrabold text-brand-dark text-sm md:text-base leading-tight tracking-tight">BISNIS DIGITAL</span>
+                                <span className="text-[10px] md:text-xs text-slate-500 font-medium">Fakultas Ekonomi dan Bisnis</span>
+                            </div>
+                        </button>
+
+                        <div className="hidden lg:flex items-center space-x-2">
+                            {menuStructure.map((menu) => (
+                                <div key={menu.name} className="relative group" onMouseEnter={() => setOpenDropdown(menu.page)} onMouseLeave={() => setOpenDropdown(null)}>
+                                    <button
+                                        onClick={() => navigate(menu.page, menu.items ? menu.items[0].sub : null)}
+                                        className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors flex items-center gap-1 ${isActive(menu.page) ? 'bg-brand-primary/10 text-brand-primary' : 'text-slate-600 hover:bg-slate-50 hover:text-brand-primary'}`}
+                                    >
+                                        {menu.name} {menu.items && <Icon name="chevronDown" className="w-3 h-3" />}
+                                    </button>
+
+                                    {menu.items && openDropdown === menu.page && (
+                                        <div className="absolute top-full left-0 mt-1 w-56 bg-white border border-slate-100 rounded-2xl shadow-xl py-2 overflow-hidden z-50 transform origin-top-left transition-all">
+                                            {menu.items.map(item => (
+                                                <button key={item.sub} onClick={() => { navigate(menu.page, item.sub); setOpenDropdown(null); }}
+                                                    className={`block w-full text-left px-5 py-2.5 text-sm font-medium transition-colors ${currentPage === menu.page && currentSubPage === item.sub ? 'bg-slate-50 text-brand-primary' : 'text-slate-600 hover:bg-slate-50 hover:text-brand-primary'}`}>
+                                                    {item.name}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="hidden lg:flex items-center">
+                            <button className="bg-brand-primary hover:bg-blue-700 text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-sm hover:shadow-md">
+                                Daftar Sekarang
+                            </button>
+                        </div>
+
+                        <button className="lg:hidden text-brand-dark p-2 bg-slate-50 rounded-lg" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                            <Icon name={mobileMenuOpen ? "close" : "menu"} className="w-6 h-6" />
+                        </button>
+                    </div>
+
+                    {/* Mobile Menu */}
+                    {mobileMenuOpen && (
+                        <div className="lg:hidden absolute top-full left-0 w-full bg-white border-t border-slate-100 shadow-xl py-4 px-4 flex flex-col gap-2 max-h-[80vh] overflow-y-auto">
+                            {menuStructure.map((menu) => (
+                                <div key={menu.name} className="border-b border-slate-50 last:border-0 pb-2 mb-2 last:pb-0 last:mb-0">
+                                    <button onClick={() => { if (!menu.items) { navigate(menu.page); setMobileMenuOpen(false); } else { setOpenDropdown(openDropdown === menu.page ? null : menu.page); } }}
+                                        className={`flex items-center justify-between w-full text-left text-base font-semibold p-3 rounded-xl ${isActive(menu.page) ? 'text-brand-primary bg-brand-primary/5' : 'text-slate-700'}`}>
+                                        {menu.name}
+                                        {menu.items && <Icon name={openDropdown === menu.page ? "chevronDown" : "chevronRight"} className="w-4 h-4" />}
+                                    </button>
+                                    
+                                    {menu.items && openDropdown === menu.page && (
+                                        <div className="mt-1 pl-4 space-y-1 border-l-2 border-brand-primary/20 ml-4">
+                                            {menu.items.map(item => (
+                                                <button key={item.sub} onClick={() => { navigate(menu.page, item.sub); setMobileMenuOpen(false); }}
+                                                    className={`block w-full text-left text-sm py-2.5 px-3 rounded-lg ${currentPage === menu.page && currentSubPage === item.sub ? 'text-brand-primary font-bold bg-brand-primary/5' : 'text-slate-500 font-medium'}`}>
+                                                    {item.name}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                            <button className="mt-4 bg-brand-primary text-white px-4 py-3.5 rounded-xl text-sm font-bold w-full text-center">Daftar Sekarang</button>
+                        </div>
+                    )}
+                </nav>
+            );
+        };
+
+        const PageHero = ({ label, title, description, backgroundImage, breadcrumb = [] }) => (
+            <div className="relative w-full h-[40vh] md:h-[45vh] min-h-[350px] bg-brand-dark overflow-hidden mt-[72px]">
+                <img src={backgroundImage} alt={title} className="w-full h-full object-cover object-center" />
+                <div className="absolute inset-0 page-hero-gradient"></div>
+                <div className="absolute inset-0 flex items-center">
+                    <div className="max-w-7xl mx-auto px-4 lg:px-8 w-full">
+                        <div className="max-w-2xl">
+                            <div className="flex items-center gap-2 text-xs md:text-sm font-semibold text-brand-accent mb-4 uppercase tracking-wider flex-wrap">
+                                {breadcrumb.map((item, i) => (
+                                    <React.Fragment key={i}>
+                                        {i > 0 && <Icon name="chevronRight" className="w-3 h-3 opacity-70" />}
+                                        <span className={i === breadcrumb.length - 1 ? 'text-white' : 'opacity-70'}>{item}</span>
+                                    </React.Fragment>
+                                ))}
+                            </div>
+                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-[1.1] mb-4">{title}</h1>
+                            {description && <p className="text-base md:text-lg text-slate-300 max-w-xl font-medium">{description}</p>}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const SectionHeader = ({ label, title, description = "", center = false }) => (
+            <div className={`mb-12 ${center ? 'text-center' : ''}`}>
+                {label && <span className="text-brand-primary font-bold text-sm tracking-widest uppercase mb-4 block">{label}</span>}
+                <h2 className="text-3xl md:text-4xl font-black text-brand-dark leading-tight">{title}</h2>
+                {description && <p className="text-slate-500 mt-4 max-w-2xl mx-auto">{description}</p>}
+            </div>
+        );
+
+        const CTASection = ({ title, description, primaryBtn, secondaryBtn }) => (
+            <section className="relative py-20 md:py-24 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Kampus" className="absolute inset-0 w-full h-full object-cover object-center" />
+                <div className="absolute inset-0 bg-brand-dark/80 mix-blend-multiply"></div>
+                <div className="relative z-10 max-w-4xl mx-auto px-4 lg:px-8 text-center">
+                    <h2 className="text-3xl md:text-4xl font-black text-white leading-[1.1] mb-6">{title}</h2>
+                    <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto font-medium">{description}</p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        {primaryBtn && <button className="bg-brand-primary hover:bg-blue-500 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg">{primaryBtn}</button>}
+                        {secondaryBtn && <button className="bg-white/10 backdrop-blur-md border border-white/30 hover:bg-white/20 text-white px-8 py-4 rounded-full font-bold text-lg transition-all">{secondaryBtn}</button>}
+                    </div>
+                </div>
+            </section>
+        );
+
+        const EmptyState = ({ message }) => (
+            <div className="text-center py-16 bg-slate-50 rounded-3xl border border-slate-100">
+                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm border border-slate-100">
+                    <Icon name="document" className="w-8 h-8 text-slate-300" />
+                </div>
+                <p className="text-slate-500 font-medium">{message}</p>
+            </div>
+        );
+
+        const AnimatedPortrait = ({ src, alt, className = "", mode = "photo" }) => {
+            const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
+            const [imgError, setImgError] = React.useState(false);
+            const [prefersReducedMotion, setPrefersReducedMotion] = React.useState(false);
+
+            React.useEffect(() => {
+                const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+                setPrefersReducedMotion(mediaQuery.matches);
+                const handler = (e) => setPrefersReducedMotion(e.matches);
+                mediaQuery.addEventListener('change', handler);
+                return () => mediaQuery.removeEventListener('change', handler);
+            }, []);
+
+            const onMouseMoveHandler = (e) => {
+                try {
+                    if (prefersReducedMotion) return;
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    setMousePos({ x, y });
+                } catch (err) {}
+            };
+            
+            const onMouseLeaveHandler = () => { 
+                if (prefersReducedMotion) return;
+                setMousePos({ x: 0, y: 0 }); 
+            };
+
+            const gridP = { x: mousePos.x * 3, y: mousePos.y * 3 };
+            const glowP = { x: mousePos.x * 5, y: mousePos.y * 5 };
+            const ringP = { x: mousePos.x * 7, y: mousePos.y * 7 };
+            const portraitP = { x: mousePos.x * 10, y: mousePos.y * 10 };
+            const fgP = { x: mousePos.x * 15, y: mousePos.y * 15 };
+            const tiltX = mousePos.y * -3;
+            const tiltY = mousePos.x * 5;
+
+            return (
+                <div className={`relative w-full max-w-[400px] aspect-[4/5] mx-auto flex items-end justify-center cursor-default group ${className}`} onMouseMove={onMouseMoveHandler} onMouseLeave={onMouseLeaveHandler}>
+                    <div className="absolute inset-4 opacity-20 rounded-3xl z-[1] transition-opacity duration-700 group-hover:opacity-40" style={{ backgroundImage: 'radial-gradient(circle at center, #ffffff 1.5px, transparent 1.5px)', backgroundSize: '24px 24px', transform: prefersReducedMotion ? 'none' : `translate(${gridP.x}px, ${gridP.y}px)` }}></div>
+                    <div className="absolute top-1/4 left-1/4 w-32 h-32 z-[2]" style={{ transform: prefersReducedMotion ? 'none' : `translate(${glowP.x}px, ${glowP.y}px)` }}><div className="w-full h-full bg-brand-primary rounded-full mix-blend-screen filter blur-[60px] animate-pulse-glow"></div></div>
+                    <div className="absolute bottom-1/3 right-1/4 w-40 h-40 z-[2]" style={{ transform: prefersReducedMotion ? 'none' : `translate(${glowP.x * -0.8}px, ${glowP.y * -0.8}px)` }}><div className="w-full h-full bg-brand-accent rounded-full mix-blend-screen filter blur-[70px] animate-pulse-glow" style={{ animationDelay: '2.5s' }}></div></div>
+                    <div className="absolute inset-8 z-[3]" style={{ transform: prefersReducedMotion ? 'none' : `translate(${ringP.x}px, ${ringP.y}px)` }}><div className="w-full h-full border border-white/10 rounded-full border-dashed animate-spin-very-slow"></div></div>
+                    <div className="absolute inset-14 z-[3]" style={{ transform: prefersReducedMotion ? 'none' : `translate(${ringP.x * -1}px, ${ringP.y * -1}px)` }}><div className="w-full h-full border border-brand-primary/20 rounded-full animate-spin-very-slow" style={{ animationDirection: 'reverse', animationDuration: '60s' }}></div></div>
+                    <div className="absolute top-1/3 left-6 w-1.5 h-1.5 bg-brand-accent rounded-full animate-pulse z-[10]" style={{ transform: prefersReducedMotion ? 'none' : `translate(${fgP.x * 0.5}px, ${fgP.y * 0.5}px)` }}></div>
+                    <div className="absolute bottom-1/4 right-8 w-2 h-2 bg-brand-primary rounded-full animate-pulse z-[10]" style={{ animationDelay: '1s', transform: prefersReducedMotion ? 'none' : `translate(${fgP.x * 0.4}px, ${fgP.y * 0.4}px)` }}></div>
+                    <div className="relative z-20 w-full h-full transition-all duration-500 ease-out flex items-end justify-center pb-0 portrait-3d-scene" style={{ transform: prefersReducedMotion ? 'none' : `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`, transition: 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)' }}>
+                        <div className={`relative w-full h-full flex items-end justify-center ${prefersReducedMotion ? '' : 'animate-float-slow'}`}>
+                            <div className="relative w-full h-full flex items-end justify-center pb-0" style={{ transform: prefersReducedMotion ? 'none' : `translate(${portraitP.x}px, ${portraitP.y}px)`, transition: 'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1)' }}>
+                                {imgError ? (
+                                    <div className="w-full h-full flex items-end justify-center pb-4 opacity-80">
+                                        <svg viewBox="0 0 200 200" fill="none" className="w-[75%] max-h-full text-brand-accent animate-pulse-glow">
+                                            <path d="M100 95C119.33 95 135 79.33 135 60C135 40.67 119.33 25 100 25C80.67 25 65 40.67 65 60C65 79.33 80.67 95 100 95Z" stroke="currentColor" strokeWidth="3" strokeDasharray="4 4" />
+                                            <path d="M40 180C40 146.863 66.8629 120 100 120C133.137 120 160 146.863 160 180" stroke="currentColor" strokeWidth="3" strokeDasharray="4 4" />
+                                        </svg>
+                                    </div>
+                                ) : mode === "portrait" ? (
+                                    <div className="relative w-[85%] h-[90%] mb-4 flex items-end justify-center">
+                                        <img src={src} alt={alt} onError={() => setImgError(true)} className="w-full h-full object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.5)]" style={{ filter: 'drop-shadow(0 0 25px rgba(56,189,248,0.25))' }} />
+                                    </div>
+                                ) : (
+                                    <div className="relative w-[80%] aspect-[3/4] mb-6 group-hover:scale-[1.02] transition-transform duration-500">
+                                        <div className="absolute inset-0 rounded-[40px] overflow-hidden shadow-2xl border border-white/10" style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%), linear-gradient(to right, black 85%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%), linear-gradient(to right, black 85%, transparent 100%)', WebkitMaskComposite: 'source-in', maskComposite: 'intersect' }}>
+                                            <img src={src} alt={alt} onError={() => setImgError(true)} className="w-full h-full object-cover filter contrast-[1.05] saturate-[1.05]" />
+                                            <div className="absolute inset-0 mix-blend-overlay shadow-[inset_0_0_20px_rgba(255,255,255,0.3)] rounded-[40px] pointer-events-none"></div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-brand-dark to-transparent z-30 pointer-events-none"></div>
+                </div>
+            );
+        };
+
+        const ProfileNavigation = ({ currentSubPage, navigate }) => {
+            const subMenus = [
+                { name: 'Tentang Prodi', sub: 'tentang' },
+                { name: 'Visi & Misi', sub: 'visi-misi' },
+                { name: 'Sejarah', sub: 'sejarah' },
+                { name: 'Sambutan', sub: 'sambutan-kaprodi' },
+                { name: 'Organisasi', sub: 'struktur-organisasi' },
+                { name: 'Dosen', sub: 'dosen' },
+                { name: 'Akreditasi', sub: 'akreditasi' }
+            ];
+
+            return (
+                <div className="bg-white border-b border-slate-100 sticky top-[72px] z-40 shadow-sm">
+                    <div className="max-w-7xl mx-auto px-4 lg:px-8">
+                        <div className="flex overflow-x-auto hide-scrollbar gap-2 py-3">
+                            {subMenus.map(item => (
+                                <button key={item.sub} onClick={() => navigate('profil', item.sub)}
+                                    className={`whitespace-nowrap px-5 py-2 rounded-full text-sm font-bold transition-all shrink-0 border ${currentSubPage === item.sub ? 'bg-brand-primary border-brand-primary text-white shadow-md' : 'bg-white border-slate-200 text-slate-600 hover:border-brand-primary hover:text-brand-primary'}`}>
+                                    {item.name}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const TentangProdi = ({ data }) => (
+            <>
+                <section className="py-20 md:py-28 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 lg:px-8">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                            <div>
+                                <SectionHeader label="Tentang Program Studi" title={data.introTitle} />
+                                <div className="space-y-4 text-slate-600 leading-relaxed text-lg">
+                                    {data.introDescription.map((p, i) => <p key={i}>{p}</p>)}
+                                </div>
+                            </div>
+                            <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden group shadow-2xl">
+                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Pembelajaran" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                <div className="absolute inset-0 bg-brand-primary/10 mix-blend-overlay"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section className="py-20 bg-brand-light">
+                    <div className="max-w-7xl mx-auto px-4 lg:px-8">
+                        <SectionHeader label="Nilai Utama" title="Pendidikan yang Membentuk Karakter" center={true} />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                            {data.coreValues.map((v, i) => (
+                                <div key={i} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 flex gap-6 items-start hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                                    <div className="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-brand-primary shrink-0 border border-blue-100"><Icon name={v.icon} className="w-6 h-6" /></div>
+                                    <div><h3 className="text-xl font-bold text-brand-dark mb-2">{v.title}</h3><p className="text-slate-500">{v.description}</p></div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            </>
+        );
+
+        const VisiMisi = ({ data }) => (
+            <>
+                <section className="py-20 md:py-28 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 lg:px-8">
+                        <div className="text-center mb-16">
+                            <span className="text-brand-primary font-bold text-sm tracking-widest uppercase mb-4 block">Visi Program Studi</span>
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-brand-dark leading-tight max-w-4xl mx-auto">{data.vision}</h2>
+                        </div>
+                        <div className="max-w-5xl mx-auto bg-brand-dark rounded-[3rem] p-8 md:p-16 text-white relative overflow-hidden shadow-2xl">
+                            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand-primary/30 rounded-full filter blur-[100px] -translate-y-1/2 translate-x-1/3"></div>
+                            <h3 className="text-2xl font-bold mb-8 relative z-10 flex items-center gap-3"><Icon name="target" className="w-8 h-8 text-brand-accent" /> Misi Program Studi</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                                {data.missions.map((mission, i) => (
+                                    <div key={i} className="flex gap-4 items-start">
+                                        <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-brand-accent font-black shrink-0 border border-white/20">0{i + 1}</div>
+                                        <p className="text-slate-300 font-medium leading-relaxed">{mission}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </>
+        );
+
+        const SejarahProdi = ({ data }) => (
+            <>
+                <section className="py-20 md:py-28 bg-white overflow-hidden">
+                    <div className="max-w-7xl mx-auto px-4 lg:px-8">
+                        <SectionHeader label="Perjalanan" title="Sejarah Program Studi" center={true} description="Tonggak penting dalam pembentukan dan pengembangan prodi." />
+                        <div className="relative max-w-4xl mx-auto py-10">
+                            <div className="absolute left-[27px] md:left-1/2 top-0 bottom-0 w-1 timeline-line transform md:-translate-x-1/2 rounded-full"></div>
+                            <div className="space-y-16">
+                                {data.map((item, i) => (
+                                    <div key={i} className={`relative flex flex-col md:flex-row gap-8 items-start group ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+                                        <div className={`flex-1 w-full pl-20 md:pl-0 ${i % 2 === 0 ? 'md:text-right md:pr-12' : 'md:text-left md:pl-12'}`}>
+                                            <div className="bg-white p-8 rounded-[2rem] shadow-soft border border-slate-100 group-hover:border-brand-primary/30 transition-colors">
+                                                <span className="text-brand-primary font-black text-3xl block mb-2">{item.year}</span>
+                                                <h3 className="text-xl font-bold text-brand-dark mb-3">{item.title}</h3>
+                                                <p className="text-slate-500 leading-relaxed">{item.description}</p>
+                                            </div>
+                                        </div>
+                                        <div className="absolute left-0 md:left-1/2 top-6 md:top-8 transform md:-translate-x-1/2 z-10 flex items-center justify-center">
+                                            <div className="w-14 h-14 bg-white rounded-full border-4 border-brand-primary flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                                <div className="w-4 h-4 bg-brand-primary rounded-full"></div>
+                                            </div>
+                                        </div>
+                                        <div className="flex-1 hidden md:block"></div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </>
+        );
+
+        const KaprodiSection = ({ data }) => (
+            <section className="py-20 md:py-28 bg-brand-dark text-white relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-primary/10 rounded-full filter blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
+                <div className="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                        <div className="lg:col-span-5 order-2 lg:order-1"><AnimatedPortrait src={data.photo} alt={data.name} mode="photo" /></div>
+                        <div className="lg:col-span-7 order-1 lg:order-2 lg:pl-8">
+                            <span className="inline-flex items-center gap-3 text-brand-accent font-bold text-sm tracking-widest uppercase mb-6"><div className="w-8 h-[2px] bg-brand-accent"></div>Sambutan Ketua Program Studi</span>
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-[1.1] mb-8 italic">"{data.greeting.split('.')[0]}."</h2>
+                            <div className="space-y-4 text-slate-300 text-base md:text-lg leading-relaxed mb-10 font-light border-l-4 border-brand-primary/50 pl-6 py-2"><p>{data.greeting}</p></div>
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t border-slate-700/50 pt-8">
+                                <div><h4 className="text-xl font-bold text-white mb-1">{data.name}, {data.degree}</h4><p className="text-brand-accent text-sm font-medium uppercase">{data.position}</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const StrukturOrganisasi = ({ data }) => {
+            const renderMember = (member, isRoot = false) => (
+                <div key={member.id} className="flex flex-col items-center relative">
+                    <div className={`bg-white p-5 rounded-3xl shadow-soft border ${isRoot ? 'border-brand-primary border-2 shadow-xl' : 'border-slate-100'} text-center w-56 relative z-10`}>
+                        <div className="w-20 h-20 rounded-full bg-slate-100 mx-auto mb-4 overflow-hidden border-4 border-white shadow-sm">
+                            {member.photo ? <img src={member.photo} alt={member.name} className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center text-slate-400"><Icon name="users" className="w-8 h-8" /></div>}
+                        </div>
+                        <h4 className="font-bold text-brand-dark text-sm mb-1">{member.name}</h4>
+                        <p className={`text-xs font-bold uppercase tracking-wide ${isRoot ? 'text-brand-primary' : 'text-slate-500'}`}>{member.position}</p>
+                    </div>
+                    {member.children && member.children.length > 0 && (
+                        <>
+                            <div className="w-0.5 h-8 bg-slate-200"></div>
+                            <div className="border-t-2 border-slate-200 w-[calc(100%-14rem)] absolute top-[11.5rem] -z-0 hidden md:block"></div>
+                            <div className="flex flex-col md:flex-row gap-8 md:gap-12 justify-center relative">
+                                {member.children.map(child => (
+                                    <div key={child.id} className="relative flex flex-col items-center">
+                                        <div className="w-0.5 h-8 bg-slate-200 hidden md:block"></div>
+                                        {renderMember(child)}
+                                    </div>
+                                ))}
+                            </div>
+                        </>
+                    )}
+                </div>
+            );
+
+            return (
+                <section className="py-20 md:py-28 bg-slate-50">
+                    <div className="max-w-7xl mx-auto px-4 lg:px-8">
+                        <SectionHeader label="Struktur Organisasi" title="Pengelola Program Studi" center={true} />
+                        <div className="flex justify-center pt-8 overflow-x-auto pb-12">{renderMember(data.head, true)}</div>
+                    </div>
+                </section>
+            );
+        };
+
+        const ProfilDosen = ({ data, navigate }) => (
+            <>
+                <section className="py-20 md:py-28 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 lg:px-8">
+                        <SectionHeader label="Tenaga Pengajar" title="Profil Dosen" center={true} description="Para pendidik profesional dan praktisi yang berdedikasi membimbing generasi masa depan." />
+                        {data.length === 0 ? (
+                            <EmptyState message="Data dosen belum tersedia." />
+                        ) : (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {data.map(lecturer => (
+                                    <div key={lecturer.id} className="bg-white rounded-[2rem] border border-slate-100 shadow-soft overflow-hidden group hover:shadow-2xl transition-all duration-300 flex flex-col">
+                                        <div className="aspect-[4/3] relative overflow-hidden bg-slate-100">
+                                            <img src={lecturer.photo} alt={lecturer.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                            <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-md border border-white/50">
+                                                <span className="text-[10px] font-black text-brand-primary uppercase tracking-wider">{lecturer.academicPosition}</span>
+                                            </div>
+                                            <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-brand-dark/80 via-brand-dark/40 to-transparent"></div>
+                                            <h3 className="absolute bottom-4 left-6 right-6 font-black text-2xl text-white leading-tight drop-shadow-md">{lecturer.name}</h3>
+                                        </div>
+                                        <div className="p-6 flex flex-col flex-grow">
+                                            <p className="text-sm font-semibold text-slate-500 mb-6">{lecturer.degree}</p>
+                                            
+                                            <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl mb-6 border border-slate-100 group-hover:border-brand-primary/20 group-hover:bg-blue-50/50 transition-colors">
+                                                <div className="w-10 h-10 rounded-full bg-white shadow-sm text-brand-primary flex items-center justify-center shrink-0 border border-slate-100">
+                                                    <Icon name="academicCap" className="w-5 h-5" />
+                                                </div>
+                                                <div>
+                                                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-0.5">Lulusan</span>
+                                                    <span className="text-sm font-bold text-brand-dark leading-tight block">{lecturer.almamater}</span>
+                                                </div>
+                                            </div>
+
+                                            <div className="flex flex-wrap gap-2 mb-8 mt-auto">
+                                                {lecturer.expertise.map((exp, i) => (
+                                                    <span key={i} className="text-xs font-semibold bg-white border border-slate-200 text-slate-600 px-3 py-1.5 rounded-xl shadow-sm">{exp}</span>
+                                                ))}
+                                            </div>
+
+                                            <div className="flex items-center justify-between pt-6 border-t border-slate-100">
+                                                <div className="flex gap-2">
+                                                    {lecturer.researchLinks.slice(0, 3).map((link, i) => (
+                                                        <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" title={link.name} className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-brand-primary hover:text-white hover:shadow-md transition-all border border-slate-100">
+                                                            <Icon name="link" className="w-4 h-4" />
+                                                        </a>
+                                                    ))}
+                                                </div>
+                                                <button onClick={() => navigate('profil', 'dosen', lecturer.slug)} className="text-sm font-bold text-brand-primary hover:text-blue-700 flex items-center gap-1 group/btn bg-blue-50/50 px-4 py-2 rounded-full transition-colors hover:bg-blue-100">
+                                                    Profil <Icon name="arrowRight" className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </section>
+            </>
+        );
+
+        const DosenDetail = ({ lecturer }) => (
+            <>
+                <PageHero
+                    label="PROFIL DOSEN"
+                    title={lecturer.name}
+                    description={`${lecturer.academicPosition} — ${lecturer.expertise.join(', ')}`}
+                    backgroundImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                    breadcrumb={['Beranda', 'Profil', 'Dosen', lecturer.name]}
+                />
+                <section className="py-20 bg-brand-light min-h-screen">
+                    <div className="max-w-5xl mx-auto px-4 lg:px-8">
+                        <div className="bg-white rounded-[2.5rem] shadow-soft border border-slate-100 overflow-hidden">
+                            
+                            {/* Header Banner */}
+                            <div className="h-48 md:h-64 bg-gradient-to-r from-brand-dark via-slate-800 to-brand-primary relative overflow-hidden">
+                                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at center, #ffffff 2px, transparent 2px)', backgroundSize: '30px 30px' }}></div>
+                            </div>
+                            
+                            <div className="px-6 md:px-12 pb-12 relative">
+                                {/* Profile Overlap */}
+                                <div className="flex flex-col md:flex-row gap-8 items-center md:items-end -mt-24 md:-mt-32 mb-10 relative z-10">
+                                    <div className="w-48 h-48 rounded-full overflow-hidden shrink-0 border-8 border-white shadow-xl bg-slate-100">
+                                        <img src={lecturer.photo} alt={lecturer.name} className="w-full h-full object-cover" />
+                                    </div>
+                                    <div className="text-center md:text-left flex-grow">
+                                        <div className="inline-block bg-brand-primary text-white text-xs font-bold px-4 py-1.5 rounded-full mb-3 shadow-md uppercase tracking-widest">
+                                            {lecturer.academicPosition}
+                                        </div>
+                                        <h2 className="text-3xl md:text-4xl font-black text-brand-dark mb-1">{lecturer.name}</h2>
+                                        <p className="text-lg text-slate-500 font-medium">{lecturer.degree}</p>
+                                    </div>
+                                    
+                                    {/* Research Links Row */}
+                                    <div className="flex flex-wrap justify-center md:justify-end gap-3 w-full md:w-auto">
+                                        {lecturer.researchLinks.map(link => (
+                                            <a key={link.name} href={link.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-brand-primary hover:text-white text-slate-700 font-bold rounded-xl text-sm transition-all shadow-sm border border-slate-200 hover:border-brand-primary group">
+                                                <Icon name="link" className="w-4 h-4 text-brand-primary group-hover:text-white" />
+                                                {link.name}
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-12 pb-12 border-b border-slate-100">
+                                    <span className="text-sm font-black text-slate-400 mr-4 flex items-center tracking-widest uppercase">Keahlian:</span>
+                                    {lecturer.expertise.map((exp, i) => (
+                                        <span key={i} className="bg-brand-light border border-blue-100 text-brand-primary px-4 py-2 rounded-xl text-sm font-bold shadow-sm">{exp}</span>
+                                    ))}
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+                                    {/* Kolom Riwayat Pendidikan */}
+                                    <div>
+                                        <h3 className="text-2xl font-black text-brand-dark mb-8 flex items-center gap-4">
+                                            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-brand-primary flex items-center justify-center shadow-sm border border-blue-100"><Icon name="academicCap" className="w-6 h-6" /></div>
+                                            Riwayat Pendidikan
+                                        </h3>
+                                        <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-200 before:to-transparent">
+                                            {lecturer.education.map((edu, i) => (
+                                                <div key={i} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                                                    <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-brand-primary text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 absolute left-0 md:left-1/2 -ml-5 md:ml-0">
+                                                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                                                    </div>
+                                                    <div className="w-full pl-8 md:w-[calc(50%-2.5rem)] md:pl-0 md:group-odd:pr-8 md:group-even:pl-8 text-left md:group-odd:text-right">
+                                                        <div className="bg-white p-5 rounded-2xl shadow-soft border border-slate-100 hover:border-brand-primary/30 transition-colors">
+                                                            <div className="text-brand-primary font-black text-lg mb-1">{edu.degree}</div>
+                                                            <h4 className="font-bold text-brand-dark">{edu.major}</h4>
+                                                            <p className="text-sm font-medium text-slate-500 mt-1">{edu.univ}</p>
+                                                            <span className="inline-block mt-3 bg-slate-100 text-slate-500 text-xs font-bold px-2 py-1 rounded-md">{edu.year}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Kolom Riset & Publikasi */}
+                                    <div>
+                                        <h3 className="text-2xl font-black text-brand-dark mb-8 flex items-center gap-4">
+                                            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-brand-primary flex items-center justify-center shadow-sm border border-blue-100"><Icon name="document" className="w-6 h-6" /></div>
+                                            Publikasi & Riset
+                                        </h3>
+                                        <div className="space-y-5">
+                                            {lecturer.publications ? lecturer.publications.map((pub, i) => (
+                                                <div key={i} className="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-brand-primary hover:shadow-md transition-all group flex flex-col h-full relative overflow-hidden">
+                                                    <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-brand-primary/5 to-transparent rounded-bl-3xl"></div>
+                                                    <div className="flex justify-between items-start gap-4 mb-3">
+                                                        <h4 className="font-bold text-brand-dark leading-snug group-hover:text-brand-primary transition-colors pr-8">{pub.title}</h4>
+                                                        <span className="bg-white px-3 py-1.5 rounded-lg text-xs font-black text-brand-dark shadow-sm border border-slate-200 shrink-0">{pub.year}</span>
+                                                    </div>
+                                                    <p className="text-sm text-slate-500 mb-6 font-medium leading-relaxed">{pub.journal}</p>
+                                                    <a href={pub.link} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center gap-2 text-xs font-bold text-brand-primary hover:text-blue-700 uppercase tracking-widest bg-white px-4 py-2.5 rounded-xl border border-blue-100 shadow-sm self-start group/link">
+                                                        Lihat Jurnal <Icon name="externalLink" className="w-4 h-4 group-hover/link:-mt-1 group-hover/link:translate-x-1 transition-all" />
+                                                    </a>
+                                                </div>
+                                            )) : <p className="text-slate-500 bg-slate-50 p-6 rounded-2xl text-center border border-slate-100">Belum ada data publikasi.</p>}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </>
+        );
+
+        const Akreditasi = ({ data }) => (
+            <section className="py-20 md:py-28 bg-brand-light min-h-[60vh] flex items-center">
+                <div className="max-w-4xl mx-auto px-4 lg:px-8 text-center w-full">
+                    <SectionHeader label="Akreditasi" title="Kredibilitas Akademik" center={true} />
+                    {!data.status ? (
+                        <EmptyState message="Informasi akreditasi akan segera diperbarui." />
+                    ) : (
+                        <div className="bg-white p-8 md:p-16 rounded-[3rem] shadow-soft border border-slate-100 relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-primary/5 rounded-full filter blur-[50px] -translate-y-1/2 translate-x-1/3"></div>
+                            
+                            <div className="w-24 h-24 bg-blue-50 rounded-3xl flex items-center justify-center mx-auto mb-8 border border-blue-100 shadow-sm relative z-10">
+                                <Icon name="academicCap" className="w-12 h-12 text-brand-primary" />
+                            </div>
+                            
+                            <h3 className="text-4xl md:text-5xl font-black text-brand-dark mb-4 relative z-10">
+                                Akreditasi <span className="text-brand-primary">{data.status}</span>
+                            </h3>
+                            <p className="text-slate-500 mb-10 text-lg max-w-xl mx-auto relative z-10">{data.institution}</p>
+                            
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left max-w-xl mx-auto bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-100 relative z-10">
+                                <div>
+                                    <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1">Nomor SK</span>
+                                    <p className="font-bold text-brand-dark text-lg">{data.decreeNumber}</p>
+                                </div>
+                                <div>
+                                    <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1">Masa Berlaku</span>
+                                    <p className="font-bold text-brand-dark text-lg">{data.validFrom} - {data.validUntil}</p>
+                                </div>
+                            </div>
+                            
+                            {data.certificateUrl && data.certificateUrl !== '#' && (
+                                <button className="mt-10 bg-brand-dark hover:bg-slate-800 text-white px-8 py-4 rounded-full font-bold transition-all shadow-md flex items-center gap-2 mx-auto relative z-10">
+                                    Unduh Sertifikat <Icon name="document" className="w-5 h-5" />
+                                </button>
+                            )}
+                        </div>
+                    )}
+                </div>
+            </section>
+        );
+
+        const HomePage = () => {
+            const [currentSlide, setCurrentSlide] = React.useState(0);
+            const slides = [
+                { img: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80", label: "PROGRAM STUDI BISNIS DIGITAL | FEB UNIVERSITAS JANABADRA", title: "BISNIS.\nTEKNOLOGI.\nMASA DEPAN.", desc: "Mempersiapkan generasi yang adaptif, inovatif, dan siap menciptakan peluang di era ekonomi digital.", btn1: "Jelajahi Bisnis Digital", btn2: "Daftar Sekarang" },
+                { img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80", label: "PENGALAMAN PEMBELAJARAN INOVATIF", title: "BELAJAR.\nBERKARYA.\nBERINOVASI.", desc: "Pembelajaran bisnis digital yang menghubungkan pengetahuan, teknologi, dan pengalaman nyata di industri.", btn1: "Lihat Akademik", btn2: null },
+                { img: "https://images.unsplash.com/photo-1556761175-5973dc0f32d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80", label: "DIGITAL ENTREPRENEURSHIP", title: "IDE HARI INI.\nBISNIS MASA DEPAN.", desc: "Kembangkan kreativitas dan jiwa kewirausahaan untuk membangun peluang di dunia digital.", btn1: "Jelajahi Kegiatan", btn2: null }
+            ];
+            
+            React.useEffect(() => { 
+                const t = setInterval(() => setCurrentSlide(p => (p + 1) % slides.length), 8000); 
+                return () => clearInterval(t); 
+            }, [slides.length]);
+
+            return (
+                <>
+                    <div className="relative w-full h-[65vh] md:h-[75vh] min-h-[500px] bg-brand-dark overflow-hidden mt-[72px]">
+                        {slides.map((s, i) => (
+                            <div key={i} className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${i === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
+                                <img src={s.img} className="w-full h-full object-cover" />
+                                <div className="absolute inset-0 hero-gradient"></div>
+                                <div className="absolute inset-0 flex items-center">
+                                    <div className="max-w-7xl mx-auto px-4 lg:px-8 w-full">
+                                        <div className={`max-w-2xl transition-all duration-1000 ${i === currentSlide ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+                                            <span className="inline-block text-brand-accent text-xs md:text-sm font-bold tracking-widest mb-4 uppercase">{s.label}</span>
+                                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-6 whitespace-pre-line">{s.title}</h1>
+                                            <p className="text-base md:text-lg text-slate-300 mb-8 max-w-xl font-medium">{s.desc}</p>
+                                            <div className="flex flex-wrap gap-4">
+                                                <button className="bg-brand-primary hover:bg-blue-500 text-white px-7 py-3.5 rounded-full font-bold transition-all flex items-center gap-2 shadow-lg">{s.btn1} <Icon name="arrowRight" className="w-4 h-4" /></button>
+                                                {s.btn2 && <button className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white px-7 py-3.5 rounded-full font-bold">{s.btn2}</button>}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        <div className="absolute bottom-8 left-4 z-20 flex gap-2">
+                            {slides.map((_, i) => <button key={i} onClick={() => setCurrentSlide(i)} className={`h-1.5 rounded-full transition-all ${i === currentSlide ? 'w-8 bg-brand-primary' : 'w-4 bg-white/40'}`} />)}
+                        </div>
+                    </div>
+
+                    <div className="bg-white border-b border-slate-100 relative z-30">
+                        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+                            <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-slate-100">
+                                {[{ icon: "bookOpen", title: "AKADEMIK", desc: "Kurikulum & Pembelajaran" }, { icon: "users", title: "DOSEN", desc: "Tenaga Pengajar" }, { icon: "compass", title: "KEMAHASISWAAN", desc: "Kegiatan & Prestasi" }, { icon: "target", title: "PENERIMAAN", desc: "Informasi Pendaftaran" }].map((item, idx) => (
+                                    <a key={idx} className="p-6 md:p-8 hover:bg-slate-50 group flex flex-col md:flex-row items-start md:items-center gap-4 cursor-pointer">
+                                        <div className="w-12 h-12 rounded-2xl bg-brand-light flex items-center justify-center text-brand-primary group-hover:scale-110 group-hover:bg-brand-primary group-hover:text-white transition-all border border-slate-100 shadow-sm"><Icon name={item.icon} className="w-5 h-5" /></div>
+                                        <div><h3 className="font-bold text-brand-dark text-sm">{item.title}</h3><p className="text-xs text-slate-500">{item.desc}</p></div>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <section className="py-20 md:py-28 bg-white">
+                        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                                <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden group shadow-2xl">
+                                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                </div>
+                                <div>
+                                    <span className="text-brand-primary font-bold text-sm tracking-widest uppercase mb-4 block">TENTANG BISNIS DIGITAL</span>
+                                    <h2 className="text-4xl md:text-5xl font-black text-brand-dark leading-[1.1] mb-6">Bisnis Bertemu<br/>Teknologi.</h2>
+                                    <div className="space-y-4 text-slate-600 text-lg leading-relaxed mb-8">
+                                        <p>Program Studi Bisnis Digital FEB Universitas Janabadra memadukan ilmu bisnis, manajemen, kewirausahaan, dan teknologi.</p>
+                                        <p>Mahasiswa dipersiapkan untuk memahami perubahan dunia bisnis dan mengembangkan peluang di era digital.</p>
+                                    </div>
+                                    <button className="bg-brand-dark hover:bg-slate-800 text-white px-7 py-3.5 rounded-full font-bold inline-flex items-center gap-2 shadow-lg transition-all">Kenali Program Studi <Icon name="arrowRight" className="w-4 h-4" /></button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <KaprodiSection data={MOCK_PROFILE_DATA.headOfProgram} />
+
+                    <section className="py-20 md:py-28 bg-brand-light">
+                        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+                            <div className="mb-16">
+                                <span className="text-brand-primary font-bold text-sm tracking-widest uppercase mb-4 block">MENGAPA BISNIS DIGITAL?</span>
+                                <h2 className="text-3xl md:text-4xl font-black text-brand-dark">Belajar Hari Ini,<br/>Menciptakan Masa Depan</h2>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                {[{ num: "01", title: "BISNIS + TEKN.", desc: "Memahami bagaimana teknologi menciptakan peluang." }, { num: "02", title: "ENTREPRENEUR", desc: "Mengembangkan ide dan bisnis di era digital." }, { num: "03", title: "PROJECT-BASED", desc: "Belajar melalui proyek dan studi kasus nyata." }, { num: "04", title: "INDUSTRY", desc: "Kolaborasi dengan praktisi dan dunia usaha." }].map((v, i) => (
+                                    <div key={i} className="bg-white p-8 rounded-[2rem] shadow-sm hover:shadow-xl border border-slate-100 hover:border-brand-primary/20 hover:-translate-y-2 transition-all duration-300">
+                                        <span className="text-4xl font-black text-brand-primary/20 mb-4 block">{v.num}</span>
+                                        <h3 className="text-lg font-bold text-brand-dark mb-3">{v.title}</h3>
+                                        <p className="text-slate-500 text-sm">{v.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="py-20 md:py-28 bg-white">
+                        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+                            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                                <div>
+                                    <span className="text-brand-primary font-bold text-sm tracking-widest uppercase mb-4 block">KOMPETENSI LULUSAN</span>
+                                    <h2 className="text-4xl md:text-5xl font-black text-brand-dark">Skill untuk<br/>Dunia Digital.</h2>
+                                </div>
+                                <button className="text-brand-primary font-bold hover:underline flex items-center gap-1 group bg-blue-50 px-5 py-2.5 rounded-full">Lihat Kurikulum <Icon name="arrowRight" className="w-4 h-4" /></button>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[220px]">
+                                {[{ icon: "trendingUp", title: "DIGITAL MARKETING", desc: "Strategi pemasaran multi-platform.", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", cs: "md:col-span-2 lg:col-span-2", rs: "row-span-2" }, { icon: "smartphone", title: "E-COMMERCE", desc: "Ritel & transaksi digital.", img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", cs: "col-span-1", rs: "row-span-1" }, { icon: "pieChart", title: "BUSINESS ANALYTICS", desc: "Data menjadi keputusan.", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", cs: "col-span-1", rs: "row-span-1" }, { icon: "lightbulb", title: "ENTREPRENEURSHIP", desc: "Bisnis adaptif teknologi.", img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", cs: "col-span-1", rs: "row-span-1" }, { icon: "briefcase", title: "BUSINESS STRATEGY", desc: "Transformasi digital.", img: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", cs: "md:col-span-2 lg:col-span-1", rs: "row-span-1" }, { icon: "rocket", title: "STARTUP DEV", desc: "Inovasi dari nol.", img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", cs: "md:col-span-3 lg:col-span-2", rs: "row-span-1" }].map((s, i) => (
+                                    <div key={i} className={`relative rounded-3xl overflow-hidden group ${s.cs} ${s.rs} bg-brand-dark shadow-md`}>
+                                        <img src={s.img} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/70 to-brand-dark/10"></div>
+                                        <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end text-white">
+                                            <div className="bg-brand-primary/90 backdrop-blur-md w-12 h-12 rounded-2xl flex items-center justify-center text-white mb-4 border border-white/20"><Icon name={s.icon} className="w-6 h-6" /></div>
+                                            <h3 className="font-black text-xl md:text-2xl mb-1">{s.title}</h3>
+                                            <p className="text-sm text-slate-300">{s.desc}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    <section className="py-20 md:py-28 bg-brand-dark text-white">
+                        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+                            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                                <h2 className="text-4xl md:text-5xl font-black">Lebih dari<br/>Sekadar Ruang Kelas.</h2>
+                                <button className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3 rounded-full font-bold transition-all">Jelajahi Kehidupan Mahasiswa</button>
+                            </div>
+                            <div className="grid grid-cols-1 lg:grid-cols-3 grid-rows-2 gap-4 h-[600px] lg:h-[500px]">
+                                <div className="lg:col-span-2 row-span-2 relative rounded-3xl overflow-hidden group">
+                                    <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                    <div className="absolute inset-0 img-overlay"></div>
+                                    <div className="absolute bottom-8 left-8">
+                                        <span className="bg-brand-primary text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase mb-3 inline-block shadow-sm">KULIAH PRAKTISI</span>
+                                        <h3 className="text-2xl font-bold">Wawasan Langsung dari Pelaku Industri</h3>
+                                    </div>
+                                </div>
+                                <div className="col-span-1 row-span-1 relative rounded-3xl overflow-hidden group hidden md:block">
+                                    <img src="https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                    <div className="absolute inset-0 img-overlay"></div>
+                                    <div className="absolute bottom-6 left-6">
+                                        <span className="bg-brand-accent text-brand-dark text-[10px] font-bold px-3 py-1.5 rounded-full uppercase mb-2 inline-block shadow-sm">KUNJUNGAN INDUSTRI</span>
+                                        <h3 className="text-lg font-bold">Tech Company Visit</h3>
+                                    </div>
+                                </div>
+                                <div className="col-span-1 row-span-1 relative rounded-3xl overflow-hidden group hidden lg:block">
+                                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                    <div className="absolute inset-0 img-overlay"></div>
+                                    <div className="absolute bottom-6 left-6">
+                                        <span className="bg-white text-brand-dark text-[10px] font-bold px-3 py-1.5 rounded-full uppercase mb-2 inline-block shadow-sm">PROJECT</span>
+                                        <h3 className="text-lg font-bold">Kolaborasi Startup</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <CTASection title="YOUR DIGITAL JOURNEY STARTS HERE." description="Mulai perjalananmu di dunia Bisnis Digital. Temukan peluang, kembangkan ide, dan persiapkan masa depanmu." primaryBtn="DAFTAR SEKARANG" secondaryBtn="INFORMASI PENDAFTARAN" />
+                </>
+            );
+        };
+
+        const App = () => {
+            const [currentPage, setCurrentPage] = React.useState('beranda');
+            const [currentSubPage, setCurrentSubPage] = React.useState(null);
+            const [detailSlug, setDetailSlug] = React.useState(null);
+
+            const navigate = (page, sub = null, slug = null) => {
+                setCurrentPage(page);
+                setCurrentSubPage(sub);
+                setDetailSlug(slug);
+                window.scrollTo(0, 0);
+            };
+
+            const renderPage = () => {
+                if (currentPage === 'beranda') return <HomePage />;
+                
+                if (currentPage === 'profil') {
+                    if (currentSubPage === 'dosen' && detailSlug) {
+                        const lecturer = MOCK_PROFILE_DATA.lecturers.find(l => l.slug === detailSlug);
+                        return lecturer ? <DosenDetail lecturer={lecturer} /> : <EmptyState message="Dosen tidak ditemukan." />;
+                    }
+                    
+                    return (
+                        <>
+                            {currentSubPage !== 'dosen-detail' && <ProfileNavigation currentSubPage={currentSubPage} navigate={navigate} />}
+                            {!currentSubPage && (
+                                <PageHero label="PROFIL" title="Profil Program Studi" description="Mengenal lebih dekat identitas, nilai, dan pengelola Program Studi Bisnis Digital." backgroundImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" breadcrumb={['Beranda', 'Profil']} />
+                            )}
+                            {currentSubPage === 'tentang' && <TentangProdi data={MOCK_PROFILE_DATA.about} />}
+                            {currentSubPage === 'visi-misi' && <VisiMisi data={MOCK_PROFILE_DATA.visionMission} />}
+                            {currentSubPage === 'sejarah' && <SejarahProdi data={MOCK_PROFILE_DATA.history} />}
+                            {currentSubPage === 'sambutan-kaprodi' && <KaprodiSection data={MOCK_PROFILE_DATA.headOfProgram} />}
+                            {currentSubPage === 'struktur-organisasi' && <StrukturOrganisasi data={MOCK_PROFILE_DATA.organization} />}
+                            {currentSubPage === 'dosen' && !detailSlug && <ProfilDosen data={MOCK_PROFILE_DATA.lecturers} navigate={navigate} />}
+                            {currentSubPage === 'akreditasi' && <Akreditasi data={MOCK_PROFILE_DATA.accreditation} />}
+                        </>
+                    );
+                }
+
+                return (
+                    <div className="pt-[72px] min-h-screen flex items-center justify-center bg-slate-50">
+                        <div className="text-center bg-white p-12 rounded-3xl shadow-sm border border-slate-100">
+                            <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <Icon name="document" className="w-10 h-10 text-slate-400" />
+                            </div>
+                            <h2 className="text-2xl font-bold text-brand-dark mb-3">Halaman {currentPage.charAt(0).toUpperCase() + currentPage.slice(1)} {currentSubPage ? `> ${currentSubPage}` : ''}</h2>
+                            <p className="text-slate-500 mb-8">Modul halaman ini sedang dalam tahap pengembangan UI/UX.</p>
+                            <button onClick={() => navigate('beranda')} className="bg-brand-primary text-white px-6 py-3 rounded-full font-bold hover:bg-blue-600 transition-all shadow-md">Kembali ke Beranda</button>
+                        </div>
+                    </div>
+                );
+            };
+
+            return (
+                <div className="flex flex-col min-h-screen selection:bg-brand-primary selection:text-white">
+                    <Navbar currentPage={currentPage} currentSubPage={currentSubPage} navigate={navigate} />
+                    <main className="flex-grow">{renderPage()}</main>
+                    
+                    <footer className="bg-brand-dark pt-20 pb-8 text-slate-400 text-sm border-t-4 border-brand-primary">
+                        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                                <div className="lg:pr-8">
+                                    <h3 className="text-white font-black text-lg mb-2">BISNIS DIGITAL</h3>
+                                    <p className="font-semibold text-slate-300 mb-4">Fakultas Ekonomi dan Bisnis<br/>Universitas Janabadra</p>
+                                    <p className="leading-relaxed">Mengintegrasikan bisnis, manajemen, kewirausahaan, dan teknologi untuk masa depan.</p>
+                                </div>
+                                <div><h4 className="text-white font-bold mb-5 tracking-wider uppercase text-xs">Navigasi</h4><ul className="space-y-3 font-medium">{['Profil', 'Akademik', 'Kemahasiswaan', 'Informasi'].map(i => <li key={i}><a className="hover:text-brand-accent transition-colors cursor-pointer">{i}</a></li>)}</ul></div>
+                                <div><h4 className="text-white font-bold mb-5 tracking-wider uppercase text-xs">Kontak</h4><ul className="space-y-3 font-medium"><li>Jl. Tentara Rakyat Mataram No. 55–57,<br/>Yogyakarta</li><li>(0274) 561039</li><li>feb@janabadra.ac.id</li></ul></div>
+                                <div><h4 className="text-white font-bold mb-5 tracking-wider uppercase text-xs">Media Sosial</h4><ul className="space-y-3 font-medium">{['Instagram', 'YouTube', 'TikTok', 'LinkedIn'].map(i => <li key={i}><a className="hover:text-brand-accent transition-colors cursor-pointer">{i}</a></li>)}</ul></div>
+                            </div>
+                            <div className="pt-8 border-t border-slate-800 text-xs flex flex-col md:flex-row justify-between items-center gap-4">
+                                <p>&copy; {new Date().getFullYear()} Program Studi Bisnis Digital, FEB, Universitas Janabadra.</p>
+                                <p>Desain: Modern Academic UI</p>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
